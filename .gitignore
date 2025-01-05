@@ -1,6 +1,9 @@
 *.tfstate
 *.tfstate.backup
 *.tfplan
+tfplan.out
+.terraform*
+terraform.tfvars
 
 .env
 *.pem
