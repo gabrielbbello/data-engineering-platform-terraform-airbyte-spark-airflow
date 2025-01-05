@@ -1,0 +1,11 @@
+*.tfstate
+*.tfstate.backup
+*.tfplan
+
+.env
+*.pem
+
+.DS_Store
+venv/
+__pycache__/
+*.pyc
