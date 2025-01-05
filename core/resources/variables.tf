@@ -24,3 +24,9 @@ variable "bucket_tags" {
     CreatedBy = "gabrielbbello@gmail.com"
   }
 }
+
+variable "db_password" {
+  description = "RDS root user password"
+  type        = string
+  sensitive   = true
+}
