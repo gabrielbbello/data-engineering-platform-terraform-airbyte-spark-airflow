@@ -9,8 +9,8 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-east-1"
-  profile = "cog-dev-bello-terraform"
+  region  = var.region
+  profile = var.profile
 }
 
 data "aws_availability_zones" "available" {}
