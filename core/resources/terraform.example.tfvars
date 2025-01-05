@@ -1,0 +1,2 @@
+region  = "example"
+profile = "example"

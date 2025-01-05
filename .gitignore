@@ -1,0 +1,14 @@
+*.tfstate
+*.tfstate.backup
+*.tfplan
+tfplan.out
+.terraform*
+terraform.tfvars
+
+.env
+*.pem
+
+.DS_Store
+venv/
+__pycache__/
+*.pyc
