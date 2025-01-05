@@ -1,2 +1,2 @@
-region = "example"
+region  = "example"
 profile = "example"

@@ -30,3 +30,11 @@ module "vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 }
+
+module "s3" {
+  source   = "./resource.aws.s3"
+  for_each = toset(var.bucket_names)
+  name     = "${each.value}-${random_id.global.hex}"
+
+  tags = var.bucket_tags
+}
