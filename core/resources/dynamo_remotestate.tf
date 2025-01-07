@@ -1,4 +1,4 @@
-resource "aws_dynamodb_table" "terraform-lock" {
+/*resource "aws_dynamodb_table" "terraform-lock" {
   name           = "bello_terraform_state"
   read_capacity  = 5
   write_capacity = 5
@@ -10,4 +10,4 @@ resource "aws_dynamodb_table" "terraform-lock" {
   tags = {
     "Name" = "DynamoDB Terraform State Lock Table"
   }
-}
+}*/
