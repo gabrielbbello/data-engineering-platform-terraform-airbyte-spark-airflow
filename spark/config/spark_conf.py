@@ -23,4 +23,6 @@ def get_spark_session(app_name="MyAPP"):
         .config("spark.hadoop.fs.s3a.endpoint", "s3.amazonaws.com") \
         .getOrCreate()
     
+    spark.sparkContext.setLogLevel("ERROR")
+        
     return spark
