@@ -30,3 +30,13 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
+
+variable "ssh_key_path" {
+  description = "Path to the SSH public key"
+  type        = string
+}
+
+variable "ssh_key_name" {
+  description = "Name of the SSH public key"
+  type        = string
+}

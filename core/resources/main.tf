@@ -95,3 +95,52 @@ resource "aws_db_instance" "rds" {
   publicly_accessible    = true
   skip_final_snapshot    = true
 }
+
+resource "aws_instance" "this" {
+  ami                    = "ami-0182f373e66f89c85"
+  instance_type          = "t2.medium"
+  subnet_id              = module.vpc.public_subnets[0]
+  vpc_security_group_ids = [aws_security_group.airbyte.id]
+  key_name               = var.ssh_key_name
+
+  user_data = file("${path.module}/../../scripts/airbyte_setup.sh")
+
+  tags = {
+    Name      = "bello-airbyte-${random_id.global.hex}"
+    ManagedBy = "Terraform"
+    CreatedBy = "gabrielbbello@gmail.com"
+  }
+
+}
+
+resource "aws_key_pair" "this" {
+  key_name   = var.ssh_key_name
+  public_key = file(var.ssh_key_path)
+}
+
+
+resource "aws_security_group" "airbyte" {
+  name   = "bello_airbyte_sg"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port   = 8000
+    to_port     = 8000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
