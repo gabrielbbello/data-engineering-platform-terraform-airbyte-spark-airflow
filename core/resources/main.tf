@@ -73,7 +73,7 @@ resource "aws_security_group" "rds" {
 
 resource "aws_db_parameter_group" "rds" {
   name   = "bello-${random_id.global.hex}"
-  family = "postgres14"
+  family = "postgres16"
 
   parameter {
     name  = "log_connections"
@@ -86,7 +86,7 @@ resource "aws_db_instance" "rds" {
   instance_class         = "db.t3.micro"
   allocated_storage      = 5
   engine                 = "postgres"
-  engine_version         = "14.10"
+  engine_version         = "16.5"
   username               = "bello"
   password               = var.db_password
   db_subnet_group_name   = aws_db_subnet_group.rds.name
