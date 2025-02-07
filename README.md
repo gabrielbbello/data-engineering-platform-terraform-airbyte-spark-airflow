@@ -1,5 +1,7 @@
 # Data Engineering Platform: AWS, Terraform, Airbyte, Spark, and Airflow for a Scalable and Managed Platform
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/your-username/data-engineering-platform?color=blue&label=Version&style=for-the-badge)
+
 This repository presents a modular and scalable Data Engineering platform designed to be flexible, easy to expand, and built upon best practices of organization and implementation.
 
 ## Technologies Used
@@ -124,6 +126,13 @@ To illustrate the project, a database was created in Postgres RDS using data fro
    pip install -r requirements.txt
    ```
 
+4. **Create and Configure the `terraform.tfvars` File**
+   Use the `terraform.example.tfvars` file as a reference to create the `terraform.tfvars` file:
+   ```bash
+   cp terraform.example.tfvars terraform.tfvars
+   ```
+   Adjust the environment variables as needed.
+
 4. **Initialize Terraform**
    Set up Terraform to provision the infrastructure:
    ```bash
@@ -136,8 +145,9 @@ To illustrate the project, a database was created in Postgres RDS using data fro
 ---
 
 ## Project Execution
+### Run Spark Pipelines (Version 1)
+In the current version (v1), data processing follows a structured pipeline using Apache Spark executed locally. Future versions will migrate this process to AWS Glue Jobs for a fully managed, serverless ETL workflow.
 
-### **Run Spark Pipelines**
 1. Process and load data from the bronze layer to the silver layer:
    ```bash
    spark-submit spark/jobs/bronze_to_silver.py
@@ -150,8 +160,17 @@ To illustrate the project, a database was created in Postgres RDS using data fro
 
 ---
 
-## Next Steps
-- **Integration with Airflow**: Add a scheduler to orchestrate the pipelines.
+## Upcoming Changes
+
+The project is evolving to enhance automation, scalability, and orchestration. Key improvements planned:
+
+🔹 AWS Glue Jobs – Replace local Spark execution with managed AWS Glue Jobs for scalable ETL workflows. Integrate Glue Crawlers and Data Catalog for schema discovery.
+
+🔹 S3 as a Serverless Data Lake – Optimize data ingestion and transformation using Glue Crawlers for automatic schema inference and Data Catalog for metadata management.
+
+🔹 Airflow for Orchestration – Deploy Apache Airflow in EC2 or MWAA, with DAGs stored in S3, enabling dynamic, modular workflow orchestration.
+
+🔹 Airbyte Connection as Code – Automate Airbyte workspace, sources, and destinations using Terraform, ensuring full Infrastructure as Code (IaC) integration.
 
 ---
 
